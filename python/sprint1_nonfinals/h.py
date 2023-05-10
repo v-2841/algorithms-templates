@@ -6,6 +6,7 @@ def get_sum(first_number: str, second_number: str) -> str:
     second_number = int(second_number)
     result = first_number + second_number
     result = str(result)
+    result = list(result)
     temp = 0
     for i in reversed(range(len(result))):
         if result[i] == '2' and temp == 0:
@@ -20,6 +21,10 @@ def get_sum(first_number: str, second_number: str) -> str:
         elif result[i] == '0' and temp == 1:
             result[i] = '1'
             temp = 0
+    t = result
+    result = ''
+    for i in t:
+        result = result + i
     if temp == 1:
         result = '1'+result
     return result
@@ -30,6 +35,6 @@ def read_input() -> Tuple[str, str]:
     second_number = input().strip()
     return first_number, second_number
 
-print(get_sum('100101','1001'))
-#first_number, second_number = read_input()
-#print(get_sum(first_number, second_number))
+
+first_number, second_number = read_input()
+print(get_sum(first_number, second_number))
