@@ -1,3 +1,4 @@
+# 87126135
 from typing import List, Tuple
 
 
@@ -23,5 +24,10 @@ def read_input() -> Tuple[int, List[List[str]]]:
     return k, matrix
 
 
-k, matrix = read_input()
-print(points_counter(k, matrix))
+def main():
+    k, matrix = read_input()
+    print(points_counter(k, matrix))
+
+
+if __name__ == '__main__':
+    main()

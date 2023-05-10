@@ -1,4 +1,4 @@
-# номер решения
+# 87126370
 from typing import List
 
 
@@ -16,6 +16,9 @@ def street_map(street: List[int]) -> List[int]:
     for i in reversed(range(length)):
         if street[i] == 0:
             count = 1
+        elif result[i] is None:
+            result[i] = count
+            count += 1
         elif count < result[i]:
             result[i] = count
             count += 1
@@ -28,5 +31,10 @@ def read_input() -> List[int]:
     return street
 
 
-street = read_input()
-print(" ".join(map(str, street_map(street))))
+def main():
+    street = read_input()
+    print(" ".join(map(str, street_map(street))))
+
+
+if __name__ == '__main__':
+    main()
