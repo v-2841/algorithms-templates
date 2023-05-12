@@ -1,33 +1,31 @@
-# 87126135
 from typing import List, Tuple
 
 
-def points_counter(k: int, matrix: List[List[str]]) -> int:
-    nums_counter = [0]*9
-    k = k*2
-    result = 0
-    for i in range(4):
-        for j in range(4):
-            if matrix[i][j] != '.':
-                nums_counter[int(matrix[i][j])-1] += 1
-    for i in range(9):
-        if k >= nums_counter[i] and nums_counter[i] != 0:
-            result += 1
-    return result
+MATRIX_DIMENSION = 4
+
+
+def points_counter(clicks: int, matrix: List[List[str]]) -> int:
+    nums_counter = [0] * 9
+    clicks = clicks * 2
+    points = 0
+    for row in range(MATRIX_DIMENSION):
+        for col in range(MATRIX_DIMENSION):
+            if matrix[row][col] != '.':
+                nums_counter[int(matrix[row][col])-1] += 1
+    for row in range(9):
+        if clicks >= nums_counter[row] and nums_counter[row] != 0:
+            points += 1
+    return points
 
 
 def read_input() -> Tuple[int, List[List[str]]]:
-    k = int(input())
+    clicks = int(input())
     matrix = []
-    for _ in range(4):
-        matrix.append(list(map(str, [*input().strip()])))
-    return k, matrix
-
-
-def main():
-    k, matrix = read_input()
-    print(points_counter(k, matrix))
+    for _ in range(MATRIX_DIMENSION):
+        matrix.append([*input()])
+    return clicks, matrix
 
 
 if __name__ == '__main__':
-    main()
+    clicks, matrix = read_input()
+    print(points_counter(clicks, matrix))

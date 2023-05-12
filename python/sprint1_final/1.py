@@ -1,40 +1,32 @@
-# 87126370
 from typing import List
 
 
-def street_map(street: List[int]) -> List[int]:
-    length = len(street)
-    result = [None]*length
+def distances_to_0(arrow: List[int]) -> List[int]:
+    result = [None] * len(arrow)
     count = 0
-    for i in range(length):
-        if street[i] == 0:
-            result[i] = 0
+    for pos, val in enumerate(arrow):
+        if val == 0:
+            result[pos] = 0
             count = 1
         elif count != 0:
-            result[i] = count
+            result[pos] = count
             count += 1
-    for i in reversed(range(length)):
-        if street[i] == 0:
+    for pos, val in reversed(list(enumerate(arrow))):
+        if val == 0:
             count = 1
-        elif result[i] is None:
-            result[i] = count
+        elif result[pos] is None:
+            result[pos] = count
             count += 1
-        elif count < result[i]:
-            result[i] = count
+        elif count < result[pos]:
+            result[pos] = count
             count += 1
     return result
 
 
 def read_input() -> List[int]:
     _ = input()
-    street = list(map(int, input().strip().split()))
-    return street
-
-
-def main():
-    street = read_input()
-    print(" ".join(map(str, street_map(street))))
+    return [int(num) for num in input().split()]
 
 
 if __name__ == '__main__':
-    main()
+    print(*distances_to_0(read_input()), sep=' ', end='')
