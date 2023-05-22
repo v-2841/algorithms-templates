@@ -5,15 +5,15 @@ LOCAL = False
 
 if LOCAL:
     class Node:
-        def __init__(self, value, next_item=None):
+        def __init__(self, value=None, next_item=None):
             self.value = value
             self.next_item = next_item
 
 
 def solution(node):
-    # Your code
-    # ヽ(´▽`)/
-    pass
+    while node:
+        print(node.value)
+        node = node.next_item
 
 
 def test():
