@@ -1,45 +1,45 @@
 # 87650025
-class Queue:
+class Dequeue:
     def __init__(self, max_n):
-        self.queue = [None] * max_n
+        self.nums = [None] * max_n
         self.max_n = max_n
         self.head = 0
         self.tail = 0
         self.lenght = 0
 
-    def push_front(self, x):
+    def push_front(self, new_num):
         if self.lenght != self.max_n:
-            self.queue[self.head-1] = x
+            self.nums[self.head - 1] = new_num
             self.head = (self.head - 1) % self.max_n
             self.lenght += 1
         else:
-            print('error')
+            raise MemoryError('error')
 
-    def push_back(self, x):
+    def push_back(self, new_num):
         if self.lenght != self.max_n:
-            self.queue[self.tail] = x
+            self.nums[self.tail] = new_num
             self.tail = (self.tail + 1) % self.max_n
             self.lenght += 1
         else:
-            print('error')
+            raise MemoryError('error')
 
     def pop_front(self):
         if self.is_empty():
-            return 'error'
-        x = self.queue[self.head]
-        self.queue[self.head] = None
+            raise IndexError('error')
+        num = self.nums[self.head]
+        self.nums[self.head] = None
         self.head = (self.head + 1) % self.max_n
         self.lenght -= 1
-        return x
+        return num
 
     def pop_back(self):
         if self.is_empty():
-            return 'error'
-        x = self.queue[self.tail-1]
-        self.queue[self.tail-1] = None
+            raise IndexError('error')
+        num = self.nums[self.tail - 1]
+        self.nums[self.tail - 1] = None
         self.tail = (self.tail - 1) % self.max_n
         self.lenght -= 1
-        return x
+        return num
 
     def is_empty(self):
         return self.lenght == 0
@@ -48,7 +48,7 @@ class Queue:
 if __name__ == '__main__':
     n = int(input())
     m = int(input())
-    deque = Queue(max_n=m)
+    deque = Dequeue(max_n=m)
     for _ in range(n):
         command = input().split()
         if command[0] == 'push_front':
