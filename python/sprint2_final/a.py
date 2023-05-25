@@ -1,4 +1,4 @@
-# 87650025
+# 87693417
 class Dequeue:
     def __init__(self, max_n):
         self.nums = [None] * max_n
@@ -50,12 +50,14 @@ if __name__ == '__main__':
     m = int(input())
     deque = Dequeue(max_n=m)
     for _ in range(n):
-        command = input().split()
-        if command[0] == 'push_front':
-            deque.push_front(int(command[1]))
-        elif command[0] == 'push_back':
-            deque.push_back(int(command[1]))
-        elif command[0] == 'pop_front':
-            print(deque.pop_front())
-        elif command[0] == 'pop_back':
-            print(deque.pop_back())
+        cmnd, *prms = input().split()
+        try:
+            result = getattr(deque, cmnd)(*prms)
+            if result:
+                print(result)
+        except AttributeError:
+            print('No such method exists.')
+        except TypeError:
+            print('Missing argument.')
+        except (IndexError, MemoryError) as e:
+            print(str(e))
