@@ -1,4 +1,4 @@
-# 87693417
+# 87783554
 class Dequeue:
     def __init__(self, max_n):
         self.nums = [None] * max_n
@@ -13,7 +13,7 @@ class Dequeue:
             self.head = (self.head - 1) % self.max_n
             self.lenght += 1
         else:
-            raise MemoryError('error')
+            raise IndexError('Deque is full.')
 
     def push_back(self, new_num):
         if self.lenght != self.max_n:
@@ -21,11 +21,11 @@ class Dequeue:
             self.tail = (self.tail + 1) % self.max_n
             self.lenght += 1
         else:
-            raise MemoryError('error')
+            raise IndexError('Deque is full.')
 
     def pop_front(self):
         if self.is_empty():
-            raise IndexError('error')
+            raise IndexError('Deque is empty.')
         num = self.nums[self.head]
         self.nums[self.head] = None
         self.head = (self.head + 1) % self.max_n
@@ -34,7 +34,7 @@ class Dequeue:
 
     def pop_back(self):
         if self.is_empty():
-            raise IndexError('error')
+            raise IndexError('Deque is empty.')
         num = self.nums[self.tail - 1]
         self.nums[self.tail - 1] = None
         self.tail = (self.tail - 1) % self.max_n
@@ -59,5 +59,5 @@ if __name__ == '__main__':
             print('No such method exists.')
         except TypeError:
             print('Missing argument.')
-        except (IndexError, MemoryError) as e:
-            print(str(e))
+        except IndexError:
+            print('error')

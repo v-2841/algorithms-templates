@@ -1,4 +1,4 @@
-# 87694411
+# 87783450
 from operator import add, sub, mul, floordiv
 
 
@@ -9,9 +9,9 @@ class Stack:
     def push(self, item):
         self.items.append(item)
 
-    def pop(self, pos=-1):
+    def pop(self):
         try:
-            return self.items.pop(pos)
+            return self.items.pop()
         except IndexError:
             raise IndexError('List is empty.')
 
@@ -26,7 +26,8 @@ def polish_calculator(expression):
     stack = Stack()
     for i in expression:
         if i in operations:
-            stack.push(operations[i](stack.pop(-2), stack.pop()))
+            first_num, second_num = stack.pop(), stack.pop()
+            stack.push(operations[i](second_num, first_num))
         else:
             stack.push(int(i))
     return stack.pop()
