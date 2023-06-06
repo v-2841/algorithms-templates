@@ -1,6 +1,10 @@
-def result(nums, point = 0, temp = ''):
-    res = []
-    
+def result(nums, prefix):
+    if not nums:
+        res.append(prefix)
+    else:
+        for i in buttons[nums[0]]:
+            result(nums[1:], prefix + i)
+
 
 buttons = {
     '2': ['a', 'b', 'c'],
@@ -12,7 +16,10 @@ buttons = {
     '8': ['t', 'u', 'v'],
     '9': ['w', 'x', 'y', 'z']
 }
-nums = list(input())
-symbols = []
-for i in nums:
-    symbols.append(buttons[i])
+nums = list(input().strip())
+res = []
+s = ''
+result(nums, '')
+for i in res:
+    s += i + ' '
+print(s)
