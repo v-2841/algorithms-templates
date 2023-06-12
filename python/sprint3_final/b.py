@@ -1,4 +1,4 @@
-# 88140298
+# 88141142
 def partition(array, pivot):
     left, right = 0, len(array) - 1
     while left < right:
@@ -8,7 +8,7 @@ def partition(array, pivot):
             array[left], array[right-1], array[
                 right] = array[right-1], array[right], array[left]
             right -= 1
-    return array[:left], array[left+1:]
+    return array[:left], array[left:]
 
 
 def effective_quicksort(array):
@@ -17,7 +17,7 @@ def effective_quicksort(array):
     else:
         pivot = array[-1]
         left, right = partition(array, pivot)
-        return effective_quicksort(left) + [pivot] + effective_quicksort(right)
+        return effective_quicksort(left) + effective_quicksort(right)
 
 
 def data_input():
