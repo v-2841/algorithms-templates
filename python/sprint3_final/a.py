@@ -1,17 +1,18 @@
-# 88154954
+# 88161621
 def broken_search(nums, target) -> int:
     left, right = 0, len(nums) - 1
     while left <= right:
         mid = (left + right) // 2
+        mid_num = nums[mid]
         if target == nums[mid]:
             return mid
-        if nums[mid] <= nums[right]:
-            if nums[mid] < target <= nums[right]:
+        if mid_num <= nums[right]:
+            if mid_num < target <= nums[right]:
                 left = mid + 1
             else:
                 right = mid - 1
         else:
-            if nums[left] <= target < nums[mid]:
+            if nums[left] <= target < mid_num:
                 right = mid - 1
             else:
                 left = mid + 1
