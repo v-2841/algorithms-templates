@@ -25,5 +25,4 @@ if __name__ == '__main__':
     persons = [(lambda name, points, penalty:
                 (-int(points), int(penalty), name))(*input().split())
                for _ in range(int(input()))]
-    persons = effective_quicksort(persons)
-    print(*[name for _, _, name in persons], sep='\n')
+    print(*[name for _, _, name in effective_quicksort(persons)], sep='\n')
