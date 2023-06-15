@@ -1,18 +1,24 @@
-# 88161556
-def effective_quicksort(array):
-    if len(array) < 2:
-        return array
-    pivot = array[-1]
-    left, right = 0, len(array) - 1
-    while left < right:
-        if array[left] <= pivot:
-            left += 1
-        else:
-            array[left], array[right - 1], array[
-                right] = array[right - 1], array[right], array[left]
-            right -= 1
-    return (effective_quicksort(array[:left])
-            + effective_quicksort(array[left:]))
+# 88224443
+def effective_quicksort(array, left=0, right=-1):
+    if right == -1:
+        right = len(array) - 1
+    if left < right:
+        pivot = array[left]
+        l_pointer, r_pointer = left - 1, right + 1
+        while True:
+            l_pointer += 1
+            r_pointer -= 1
+            while array[l_pointer] < pivot:
+                l_pointer += 1
+            while array[r_pointer] > pivot:
+                r_pointer -= 1
+            if l_pointer >= r_pointer:
+                break
+            array[l_pointer], array[r_pointer] = array[
+                r_pointer], array[l_pointer]
+        effective_quicksort(array, left, r_pointer)
+        effective_quicksort(array, r_pointer + 1, right)
+    return array
 
 
 if __name__ == '__main__':
